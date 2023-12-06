@@ -31,14 +31,14 @@ class CompanyController extends Controller
         if ($request->hasFile('logo')) {
             $uploadedFile = $request->file('logo');
             $filename = time() . '.' . $uploadedFile->getClientOriginalExtension();
-            $filePath = 'assets/img/' . $filename; // Define the file path
+            $filePath = 'assets/img/' . $filename; 
 
-            $uploadedFile->move(public_path('assets/img/'), $filename); // Save the uploaded file to the defined path
+            $uploadedFile->move(public_path('assets/img/'), $filename);
 
-            $data['logo'] = $filePath; // Set the file path in the data array
+            $data['logo'] = $filePath;
         }
 
-        Company::create($data); // Create a new company with the provided data
+        Company::create($data);
 
         Alert::success('Success', 'Company Added!')->persistent(true)->autoClose(3000);
         return redirect('companies')->with('success', 'Company Added!');

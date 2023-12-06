@@ -25,7 +25,7 @@ class EmployeeController extends Controller
 
         return view('HomePage.Employee.Employee', compact('employees'));
     }
-  
+
 
     public function show(Request $request){
 
@@ -43,6 +43,8 @@ class EmployeeController extends Controller
 
     public function store(EmployeeRequest $request)
     {
+
+        $employee = $request->validated();
         $company = Company::firstOrCreate(['name' => $request->input('company_name')]);
 
         $employee = new Employee([
@@ -73,6 +75,8 @@ class EmployeeController extends Controller
      */
     public function update(EmployeeRequest $request, string $id)
     {
+
+        $employee = $request->validated();
         $employee = Employee::findOrFail($id);
 
 
